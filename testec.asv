@@ -1,0 +1,68 @@
+endn=linspace(30,120,30);
+for i=1:length(endn)
+y=Fisher(1:endn(i),1);
+x=Fisher(1:endn(i),2:5);
+xt=Fisher((endn(i)+1):150,2:5);
+yt=Fisher((endn(i)+1):150,1);
+yest=mydt(x,y,xt);
+err(i)=sum(abs(yest-yt))/length(yt);
+end
+plot(endn,err);
+%%
+endn=linspace(30,120,30);
+for i=1:length(endn)
+y=Fisher(1:endn(i),1);
+x=Fisher(1:endn(i),2:5);
+xt=Fisher((endn(i)+1):150,2:5);
+yt=Fisher((endn(i)+1):150,1);
+yest=mybdt(x,y,xt);
+err(i)=sum(abs(yest-yt))/length(yt);
+end
+plot(endn,err);
+%%
+endn=linspace(30,120,30);
+for i=1:length(endn)
+y=Fisher(1:endn(i),1);
+x=Fisher(1:endn(i),2:5);
+xt=Fisher((endn(i)+1):150,2:5);
+yt=Fisher((endn(i)+1):150,1);
+yest=myknn(x,y,xt,5);
+err(i)=sum(abs(yest-yt))/length(yt);
+end
+plot(endn,err);
+%%
+endn=linspace(30,120,30);
+%clear err
+for i=1:length(endn)
+y=Fisher(1:endn(i),1);
+x=Fisher(1:endn(i),2:5);
+xt=Fisher((endn(i)+1):150,2:5);
+yt=Fisher((endn(i)+1):150,1);
+ysvm=y;
+for j=1:length(y)
+    if y(j)==1
+        ysvm(j)=0;%med is not safe
+    end
+end
+
+ysvmt=yt;
+for j=1:length(yt)
+    if yt(j)==1
+        ysvmt(j)=0;%med is not safe
+    end
+end
+yest=mysvm(x,ysvm,xt);
+err(i)=sum(abs(yest-ysvmt))/length(ysvmt);
+end
+plot(endn,err);
+%%
+endn=linspace(30,120,30);
+for i=1:length(endn)
+y=Fisher(1:endn(i),1);
+x=Fisher(1:endn(i),2:5);
+xt=Fisher((endn(i)+1):150,2:5);
+yt=Fisher((endn(i)+1):150,1);
+yest=mynn(x,y,xt,);
+err(i)=sum(abs(yest-yt))/length(yt);
+end
+plot(endn,err);
